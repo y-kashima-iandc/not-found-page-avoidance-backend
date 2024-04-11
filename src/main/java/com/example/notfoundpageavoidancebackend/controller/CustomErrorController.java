@@ -25,10 +25,12 @@ public class CustomErrorController implements ErrorController {
 
 			// ステータスコードが404のとき
 			if (statusCode == HttpServletResponse.SC_NOT_FOUND) {
-				for (String path : existPathList) {
-					if (uri.toString().matches(path)) {
-						// ステータスコードを200に変更
-						response.setStatus(HttpServletResponse.SC_OK);
+				if (uri != null ) {
+					for (String path : existPathList) {
+						if (uri.toString().matches(path)) {
+							// ステータスコードを200に変更
+							response.setStatus(HttpServletResponse.SC_OK);
+						}
 					}
 				}
 				return "/index.html";
